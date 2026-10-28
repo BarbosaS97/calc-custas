@@ -626,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function() {
             avisoTexto.textContent = 'Este sistema é somente para fins de cálculo e não gera a GRU automaticamente.';
 
             const linkGru = criarLink('Emitir GRU no PagTesouro', 'https://pagtesouro.tesouro.gov.br/portal-gru/#/pagamento-gru');
-            const linkManual = criarLink('Manual de Orientação (2022)', 'https://sicom.cjf.jus.br/arquivos/pdf/manual_de_calculos_revisado_ultima_versao_com_resolucao_e_apresentacao.pdf');
+            const linkManual = criarLink('Manual de Cálculos da Justiça Federal (2026)', 'https://www.trf1.jus.br/trf1/conteudo/corej/2026/2026%20Manual%20de%20C%C3%A1lculo%20CJF%201.pdf');
 
             const linksDiv = document.createElement('div');
             linksDiv.appendChild(document.createTextNode('Acesse:'));
