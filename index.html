@@ -14,7 +14,6 @@
                     <h1>Cálculo de Custas Processuais</h1>
                     <p class="subtitle">Justiça Federal da 1ª Região · Portaria Presi 181/2026</p>
                 </div>
-                <a href="#" id="editor-btn" class="editor-btn" title="Editor de índices">Editor de índices</a>
             </div>
         </header>
         
@@ -230,21 +229,6 @@
         </div>
     </div>
 
-    <!-- Modal de senha para o editor -->
-    <div id="password-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="document.getElementById('password-modal').style.display='none'">&times;</span>
-            <h3>Acesso ao Editor de Índices</h3>
-            <div class="form-group">
-                <label for="editor-password">Senha:</label>
-                <input type="password" id="editor-password" class="form-control" placeholder="Digite a senha">
-                <small class="form-text">A senha é necessária para acessar esta função</small>
-            </div>
-            <div id="password-error">Senha incorreta. Tente novamente.</div>
-            <button onclick="verifyPassword()" class="btn btn-primary">Acessar</button>
-        </div>
-    </div>
-
     <!-- Modal de informações -->
     <div id="info-modal" class="modal">
         <div class="modal-content">
@@ -305,34 +289,5 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
     <script src="firebaseConfig.js"></script>
     <script src="script.js"></script>
-    <script src="indices.js"></script>
-    <script>
-        const EDITOR_PASSWORD = "32216752";
-        
-        document.getElementById('editor-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('password-modal').style.display = 'block';
-            document.getElementById('editor-password').focus();
-        });
-
-        function verifyPassword() {
-            const passwordInput = document.getElementById('editor-password');
-            const errorElement = document.getElementById('password-error');
-            
-            if (passwordInput.value === EDITOR_PASSWORD) {
-                window.location.href = 'indices.html';
-            } else {
-                errorElement.style.display = 'block';
-                passwordInput.value = '';
-                passwordInput.focus();
-            }
-        }
-
-        document.getElementById('editor-password').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                verifyPassword();
-            }
-        });
-    </script>
 </body>
 </html>

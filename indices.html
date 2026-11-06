@@ -6,7 +6,7 @@
     <title>Editor de Índices</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="locked">
     <div class="container">
         <header>
             <div class="header-actions">
@@ -91,6 +91,59 @@
             </div>
         </div>
     </div>
+
+    <div id="password-modal" class="modal" style="display: block;">
+        <div class="modal-content">
+            <h3>Acesso ao Editor de Índices</h3>
+            <div class="form-group">
+                <label for="editor-password">Senha</label>
+                <input type="password" id="editor-password" class="form-control" autocomplete="off">
+            </div>
+            <div id="password-error">Senha incorreta. Tente novamente.</div>
+            <div class="form-actions">
+                <a href="index.html" class="btn btn-secondary">Voltar</a>
+                <button id="password-submit" class="btn btn-primary">Acessar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const SENHA = "32216752";
+            const modal = document.getElementById('password-modal');
+            const input = document.getElementById('editor-password');
+            const erro = document.getElementById('password-error');
+
+            function liberar() {
+                document.body.classList.remove('locked');
+                modal.style.display = 'none';
+            }
+
+            function verificar() {
+                if (input.value === SENHA) {
+                    try { sessionStorage.setItem('editor-ok', '1'); } catch (e) {}
+                    liberar();
+                } else {
+                    erro.style.display = 'block';
+                    input.value = '';
+                    input.focus();
+                }
+            }
+
+            let autenticado = false;
+            try { autenticado = sessionStorage.getItem('editor-ok') === '1'; } catch (e) {}
+            if (autenticado) {
+                liberar();
+            } else {
+                input.focus();
+            }
+
+            document.getElementById('password-submit').addEventListener('click', verificar);
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') verificar();
+            });
+        })();
+    </script>
 
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
