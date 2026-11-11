@@ -3,151 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editor de Índices</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title>Cálculo de Custas Processuais</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .aviso-pagina { max-width: 640px; margin: 12vh auto 0; }
+        .aviso-pagina .conteudo { padding: 32px; }
+        .aviso-pagina h2 { font-size: 18px; color: var(--primary-color); margin-bottom: 12px; }
+        .aviso-pagina p { margin-bottom: 20px; }
+        .aviso-pagina .btn { text-decoration: none; display: inline-block; }
+    </style>
 </head>
-<body class="locked">
-    <div class="container">
+<body>
+    <div class="container aviso-pagina">
         <header>
-            <div class="header-actions">
-                <div>
-                    <h1>Editor de Índices</h1>
-                    <p class="subtitle">Índices de atualização monetária</p>
-                </div>
-                <button id="back-btn" class="btn btn-secondary">Voltar ao sistema</button>
-            </div>
+            <h1>Cálculo de Custas Processuais</h1>
         </header>
-
-        <div class="editor-body">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="tipo-indice">Tipo de índice</label>
-                    <div class="tipo-indice-container">
-                        <select id="tipo-indice" class="form-control">
-                            <option value="IPCA-E">IPCA-E</option>
-                        </select>
-                        <button id="delete-tipo" class="btn btn-danger btn-sm" title="Excluir este tipo de índice">Excluir</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="novo-tipo-indice">Adicionar novo tipo</label>
-                    <div class="inline-fields">
-                        <input type="text" id="novo-tipo-indice" class="form-control" placeholder="Nome do novo índice">
-                        <button id="add-tipo-indice" class="btn btn-primary">Adicionar</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="control-panel">
-                <button id="add-year" class="btn btn-primary">Adicionar ano</button>
-                <button id="import-data" class="btn btn-secondary">Importar do Excel</button>
-                <button id="export-data" class="btn btn-secondary">Exportar para Excel</button>
-                <button id="save-data" class="btn btn-success">Salvar índices</button>
-            </div>
-
-            <div class="table-container">
-                <table id="ipca-table" class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Ano</th>
-                            <th>Jan</th>
-                            <th>Fev</th>
-                            <th>Mar</th>
-                            <th>Abr</th>
-                            <th>Mai</th>
-                            <th>Jun</th>
-                            <th>Jul</th>
-                            <th>Ago</th>
-                            <th>Set</th>
-                            <th>Out</th>
-                            <th>Nov</th>
-                            <th>Dez</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body"></tbody>
-                </table>
-            </div>
-
-            <div class="instructions">
-                <h3>Instruções</h3>
-                <ol>
-                    <li>Use "Adicionar ano" para incluir um novo ano de dados.</li>
-                    <li>Clique em uma célula para editar o valor (percentual mensal).</li>
-                    <li>Use "Excluir" para remover um ano.</li>
-                    <li>Salve as alterações antes de sair.</li>
-                </ol>
-            </div>
+        <div class="conteudo">
+            <h2>Sistema encerrado</h2>
+            <p>O sistema oficial de cálculo de custas voltou à normalidade. Este sistema não está mais disponível. Acesse o cálculo pelo endereço oficial:</p>
+            <a class="btn btn-primary" href="https://app.trf1.jus.br/calculo-custas/">https://app.trf1.jus.br/calculo-custas/</a>
         </div>
     </div>
-
-    <div id="confirm-modal" class="modal">
-        <div class="modal-content">
-            <h3>Confirmar exclusão</h3>
-            <p id="confirm-message">Tem certeza que deseja excluir este item?</p>
-            <div class="form-actions">
-                <button id="confirm-cancel" class="btn btn-secondary">Cancelar</button>
-                <button id="confirm-action" class="btn btn-danger">Excluir</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="password-modal" class="modal" style="display: block;">
-        <div class="modal-content">
-            <h3>Acesso ao Editor de Índices</h3>
-            <div class="form-group">
-                <label for="editor-password">Senha</label>
-                <input type="password" id="editor-password" class="form-control" autocomplete="off">
-            </div>
-            <div id="password-error">Senha incorreta. Tente novamente.</div>
-            <div class="form-actions">
-                <a href="index.html" class="btn btn-secondary">Voltar</a>
-                <button id="password-submit" class="btn btn-primary">Acessar</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        (function () {
-            const SENHA = "32216752";
-            const modal = document.getElementById('password-modal');
-            const input = document.getElementById('editor-password');
-            const erro = document.getElementById('password-error');
-
-            function liberar() {
-                document.body.classList.remove('locked');
-                modal.style.display = 'none';
-            }
-
-            function verificar() {
-                if (input.value === SENHA) {
-                    try { sessionStorage.setItem('editor-ok', '1'); } catch (e) {}
-                    liberar();
-                } else {
-                    erro.style.display = 'block';
-                    input.value = '';
-                    input.focus();
-                }
-            }
-
-            let autenticado = false;
-            try { autenticado = sessionStorage.getItem('editor-ok') === '1'; } catch (e) {}
-            if (autenticado) {
-                liberar();
-            } else {
-                input.focus();
-            }
-
-            document.getElementById('password-submit').addEventListener('click', verificar);
-            input.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter') verificar();
-            });
-        })();
-    </script>
-
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
-    <script src="firebaseConfig.js"></script>
-    <script src="indices.js"></script>
 </body>
 </html>
