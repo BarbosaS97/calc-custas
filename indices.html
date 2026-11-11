@@ -11,7 +11,15 @@
         .aviso-pagina .conteudo { padding: 32px; }
         .aviso-pagina h2 { font-size: 18px; color: var(--primary-color); margin-bottom: 12px; }
         .aviso-pagina p { margin-bottom: 20px; }
-        .aviso-pagina .btn { text-decoration: none; display: inline-block; }
+        .aviso-pagina { text-align: center; }
+        .aviso-pagina .btn-oficial {
+            display: block; padding: 18px 24px; background-color: var(--primary-color); color: #fff;
+            font-size: 18px; font-weight: 600; text-decoration: none; border-radius: 4px;
+            border-bottom: 4px solid var(--primary-dark); margin-bottom: 12px;
+        }
+        .aviso-pagina .btn-oficial:hover { background-color: var(--primary-dark); }
+        .aviso-pagina .btn-oficial:focus-visible { outline: 3px solid #f0b429; outline-offset: 2px; }
+        .aviso-pagina .url-oficial { font-size: 13px; color: var(--muted-color); }
     </style>
 </head>
 <body>
@@ -20,9 +28,10 @@
             <h1>Cálculo de Custas Processuais</h1>
         </header>
         <div class="conteudo">
-            <h2>Sistema encerrado</h2>
-            <p>O sistema oficial de cálculo de custas voltou à normalidade. Este sistema não está mais disponível. Acesse o cálculo pelo endereço oficial:</p>
-            <a class="btn btn-primary" href="https://app.trf1.jus.br/calculo-custas/">https://app.trf1.jus.br/calculo-custas/</a>
+            <h2>O sistema oficial de cálculo de custas voltou à normalidade</h2>
+            <p>Faça o cálculo pelo sistema oficial.</p>
+            <a class="btn-oficial" href="https://app.trf1.jus.br/calculo-custas/">Acesse o cálculo pelo endereço oficial &rarr;</a>
+            <span class="url-oficial">https://app.trf1.jus.br/calculo-custas/</span>
         </div>
     </div>
 </body>
